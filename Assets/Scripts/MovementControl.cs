@@ -8,7 +8,7 @@ public class MovementControl : MonoBehaviour
     [SerializeField] private float moveStrength;
     [SerializeField] private float jumpStrength;
     [SerializeField] private List<Rigidbody2D> characters;
-    
+    [SerializeField] private float moveAnimationThreshold;
     private List<ContactPoint2D> contactPoints = new List<ContactPoint2D>();
     private GameInitializer gameInitializer;
     private CameraFollowTarget cameraFollowTarget;
@@ -66,6 +66,15 @@ public class MovementControl : MonoBehaviour
             characters.AddRange(gameInitializer.AllCharacters);
             if (!cameraFollowTarget.HasTarget)
             cameraFollowTarget.SetTarget(characters[0].gameObject);
+        }
+
+        foreach(var cha in gameInitializer.AllCharacters)
+        {
+            var animator = cha.GetComponent<Animator>();
+            if (Mathf.Abs(cha.velocity.x) > moveAnimationThreshold)
+                animator.Play("CreatureRun");
+            else
+                animator.Play("CreatureIdle");
         }
     }
 

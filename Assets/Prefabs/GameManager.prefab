@@ -48,8 +48,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveStrength: 50
   jumpStrength: 10
-  characters:
-  - {fileID: 0}
+  characters: []
+  moveAnimationThreshold: 0.1
 --- !u!114 &5229862488828098602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -62,9 +62,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9330bedbde5833c749a0f6d46ab1a4fc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  characterObject: {fileID: 0}
+  characterObject: {fileID: 8016926787477039669, guid: 1241c304d068c4c26929157053e55f47, type: 3}
   spawnLocation: {fileID: 0}
-  characterCount: 0
+  characterCount: 5
 --- !u!114 &539749665708666197
 MonoBehaviour:
   m_ObjectHideFlags: 0
