@@ -32,7 +32,7 @@ public class GameFinishManager : MonoBehaviour
         if (finishers == game.AllCharacters.Count)
         {
             Debug.LogWarning("FINISH");
-        }    
+        }
     }
 
 

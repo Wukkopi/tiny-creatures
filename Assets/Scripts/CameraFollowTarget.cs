@@ -13,6 +13,7 @@ public class CameraFollowTarget : MonoBehaviour
     private float followStrength = 0.95f;
 
     public void SetTarget(GameObject target) => this.target = target;
+    public GameObject GetTarget() => target;
 
     public bool HasTarget => !!target;
 

@@ -16,6 +16,8 @@ public class MovementControl : MonoBehaviour
     private bool jump;
     private float move;
 
+    private bool nextSelected;
+
     void Awake()
     {
         gameInitializer = GetComponent<GameInitializer>();
@@ -32,7 +34,7 @@ public class MovementControl : MonoBehaviour
                 {
                     foreach (var cp in contactPoints)
                     {
-                        if (cp.collider.gameObject.layer == LayerMask.NameToLayer("Level"))
+                        //if (cp.collider.gameObject.layer == LayerMask.NameToLayer("Level"))
                         {
                             if (cp.normal.y < 0) continue;
                             var direction = (Vector2.up * 2) + cp.normal;
@@ -42,6 +44,7 @@ public class MovementControl : MonoBehaviour
                     }
                 }
             }
+            //character.velocity = new Vector2(move * moveStrength, character.velocity.y);
             character.AddForce(Vector2.right * move * moveStrength, ForceMode2D.Force);
         }
         jump = false;
@@ -51,7 +54,25 @@ public class MovementControl : MonoBehaviour
     void Update()
     {
         move = Input.GetAxisRaw("Move");
-        jump = jump || Input.GetAxisRaw("Jump") > 0.5f;
+
+        jump = !jump && Input.GetAxisRaw("Jump") > 0.5f;
+
+        if (!nextSelected)
+        {
+            if (Input.GetAxisRaw("SelectNext") > 0.5f)
+            {
+                nextSelected = true;
+                characters.Clear();
+                var selectedId = gameInitializer.AllCharacters.IndexOf(cameraFollowTarget.GetTarget().GetComponent<Rigidbody2D>());
+                if (++selectedId == gameInitializer.AllCharacters.Count) selectedId = 0;
+                characters.Add(gameInitializer.AllCharacters[selectedId]);
+                cameraFollowTarget.SetTarget(characters[0].gameObject);
+            }
+        }
+        else if (Input.GetAxisRaw("SelectNext") < 0.5f)
+        {
+            nextSelected = false;
+        }
 
         // Debug.Log($"move: {move}, jump: {jump}");
 
