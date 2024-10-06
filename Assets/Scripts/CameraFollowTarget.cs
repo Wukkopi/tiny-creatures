@@ -17,7 +17,7 @@ public class CameraFollowTarget : MonoBehaviour
     public bool HasTarget => !!target;
 
     // Update is called once per frame
-    void Update()
+    void LateUpdate()
     {
         if (!target) return;
 

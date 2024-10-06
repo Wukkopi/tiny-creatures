@@ -34,6 +34,7 @@ public class MovementControl : MonoBehaviour
                     {
                         if (cp.collider.gameObject.layer == LayerMask.NameToLayer("Level"))
                         {
+                            if (cp.normal.y < 0) continue;
                             var direction = (Vector2.up * 2) + cp.normal;
                             character.AddForce(direction.normalized * jumpStrength, ForceMode2D.Impulse);
                             break;
@@ -52,7 +53,7 @@ public class MovementControl : MonoBehaviour
         move = Input.GetAxisRaw("Move");
         jump = jump || Input.GetAxisRaw("Jump") > 0.5f;
 
-        Debug.Log($"move: {move}, jump: {jump}");
+        // Debug.Log($"move: {move}, jump: {jump}");
 
         if (tryGetValidCharacter(out var character))
         {
