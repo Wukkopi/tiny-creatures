@@ -46,7 +46,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 25a3bf9b8441e7830999dc0140983d7c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveStrength: 50
+  moveStrength: 35
   jumpStrength: 10
   characters: []
   moveAnimationThreshold: 0.1
